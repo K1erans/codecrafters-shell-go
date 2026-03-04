@@ -11,7 +11,7 @@ import (
 func main() {
 	// TODO: Uncomment the code below to pass the first stage
 	reader := bufio.NewReader(os.Stdin)
-	commands := []string{"echo", "type"}
+	commands := []string{"echo", "type", "exit"}
 	for {
 		fmt.Print("$ ")
 		input, _ := reader.ReadString('\n')
