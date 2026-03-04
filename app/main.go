@@ -37,7 +37,7 @@ func Command(args []string, commands []string) {
 		}
 		return
 	case "exit":
-		os.Exit(1)
+		os.Exit(0)
 		return
 	default:
 		fmt.Println(args[0] + ": command not found")
