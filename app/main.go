@@ -10,6 +10,11 @@ func main() {
 	for {
 		fmt.Print("$ ")
 		fmt.Scanln(&input)
-		fmt.Println(input + ": command not found")
+		switch input {
+		case "exit":
+			return
+		default:
+			fmt.Println(input + ": command not found")
+		}
 	}
 }
