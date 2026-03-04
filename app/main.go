@@ -9,5 +9,5 @@ func main() {
 	fmt.Print("$ ")
 	var input string
 	fmt.Scanln(&input)
-	fmt.Println(input, ": command not found")
+	fmt.Println(input + ": command not found")
 }
