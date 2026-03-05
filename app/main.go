@@ -35,6 +35,8 @@ func Command(args []string, commands []string) {
 			fmt.Println(args[1] + " is a shell builtin")
 		} else if path, err := exec.LookPath(args[1]); err == nil {
 			fmt.Println(args[1] + " is " + path)
+		} else {
+			fmt.Println(args[1] + ": command not found")
 		}
 		return
 	case "exit":
@@ -44,19 +46,3 @@ func Command(args []string, commands []string) {
 		fmt.Println(args[0] + ": command not found")
 	}
 }
-
-// func Path_Traversal(path string, arg string) string {
-// 	var hard_to_name_variable string = ""
-// 	parts := strings.Split(path, "/")
-// 	for _, part := range parts {
-// 		var part_path string = path + "/" + part
-// 		file, err := os.Open(part_path)
-// 		if err == nil {
-// 			hard_to_name_variable = arg + " is " + part
-// 			return hard_to_name_variable
-// 		}
-// 		file.Close()
-// 	}
-//   hard_to_name_variable = arg + ": command not found"
-//   return hard_to_name_variable
-// }
