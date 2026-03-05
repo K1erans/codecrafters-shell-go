@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"os/exec"
 	"slices"
 	"strings"
 )
@@ -32,8 +33,8 @@ func Command(args []string, commands []string) {
 	case "type":
 		if slices.Contains(commands, args[1]) {
 			fmt.Println(args[1] + " is a shell builtin")
-		} else {
-			fmt.Println(args[1] + ": not found")
+		} else if path, err := exec.LookPath(args[1]); err == nil {
+			fmt.Println(args[1] + " is " + path)
 		}
 		return
 	case "exit":
@@ -43,3 +44,19 @@ func Command(args []string, commands []string) {
 		fmt.Println(args[0] + ": command not found")
 	}
 }
+
+// func Path_Traversal(path string, arg string) string {
+// 	var hard_to_name_variable string = ""
+// 	parts := strings.Split(path, "/")
+// 	for _, part := range parts {
+// 		var part_path string = path + "/" + part
+// 		file, err := os.Open(part_path)
+// 		if err == nil {
+// 			hard_to_name_variable = arg + " is " + part
+// 			return hard_to_name_variable
+// 		}
+// 		file.Close()
+// 	}
+//   hard_to_name_variable = arg + ": command not found"
+//   return hard_to_name_variable
+// }
