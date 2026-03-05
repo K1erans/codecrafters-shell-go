@@ -36,7 +36,7 @@ func Command(args []string, commands []string) {
 		} else if path, err := exec.LookPath(args[1]); err == nil {
 			fmt.Println(args[1] + " is " + path)
 		} else {
-			fmt.Println(args[1] + ": command not found")
+			fmt.Println(args[1] + ": not found")
 		}
 		return
 	case "exit":
