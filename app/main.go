@@ -31,18 +31,30 @@ func Command(args []string, commands []string) {
 		fmt.Println(output)
 		return
 	case "type":
-		if slices.Contains(commands, args[1]) {
-			fmt.Println(args[1] + " is a shell builtin")
-		} else if path, err := exec.LookPath(args[1]); err == nil {
-			fmt.Println(args[1] + " is " + path)
-		} else {
-			fmt.Println(args[1] + ": not found")
-		}
+		Check_Command(commands, args[1], args[2:])
 		return
 	case "exit":
 		os.Exit(0)
 		return
 	default:
-		fmt.Println(args[0] + ": command not found")
+		Check_Command(commands, args[0], args[1:])
+		return
+	}
+}
+func Check_Command(commands []string, args string, args2 []string) {
+	if path, err := exec.LookPath(args); err == nil {
+		fmt.Println(args + " is " + path)
+		command := exec.Command(path, args2...)
+		output, err := command.CombinedOutput()
+		if err != nil {
+			fmt.Println(string(output))
+		}
+		return
+	} else if slices.Contains(commands, args) {
+		fmt.Println(args + " is a shell builtin")
+		return
+	} else {
+		fmt.Println(args + ": not found")
+		return
 	}
 }
